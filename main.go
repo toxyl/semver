@@ -47,7 +47,7 @@ func (v *Version) Set(major, minor, patch int, suffixes ...string) *Version {
 }
 
 func (v *Version) SetFromString(str string) *Version {
-	version, err := NewVersionFromString(str)
+	version, err := NewFromString(str)
 	if err != nil {
 		return v
 	}
@@ -69,7 +69,7 @@ func (v *Version) String() string {
 	return s
 }
 
-func NewVersion() *Version {
+func New() *Version {
 	v := &Version{
 		major:  0,
 		minor:  0,
@@ -79,7 +79,7 @@ func NewVersion() *Version {
 	return v
 }
 
-func NewVersionFromString(str string) (*Version, error) {
+func NewFromString(str string) (*Version, error) {
 	version := &Version{
 		major:  0,
 		minor:  0,
@@ -139,7 +139,7 @@ func SortVersions(versions []*Version) {
 	})
 }
 
-func IsValidVersionString(version string) bool {
-	_, err := NewVersionFromString(version)
+func IsValid(version string) bool {
+	_, err := NewFromString(version)
 	return err == nil
 }
